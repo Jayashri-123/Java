@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class numbertowords {
+    static final String units[]={ "", "One", "Two", "Three", "Four", "Five", "Six",
+            "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+            "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+            "Eighteen", "Nineteen" };
+
+    static final String tens[]={ "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty",
+            "Seventy", "Eighty", "Ninety" };
+
+    public static String convert(int n)
+    {
+        if (n==0)
+        {
+            return "Zero";
+        }
+
+        String result="";
+
+        if (n>=1000000)
+        {
+            result+=convert(n/1000000) + " Million ";
+            n=n%1000000;
+        }
+        if (n>=1000)
+        {
+            result+=convert(n/1000) + " Thousand ";
+            n=n%1000;
+        }
+        if(n>=100)
+        {
+            result+=convert(n/100) + " Hundred ";
+            n=n%100;
+        }
+        if (n>=20)
+        {
+            result+=tens[n/10] + " ";
+            n=n%10;
+        }
+        if (n>0)
+        {
+            result+=units[n] + " ";
+        }
+        return result.trim();
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        int n=in.nextInt();
+        System.out.println(convert(n));
+    }
+}
